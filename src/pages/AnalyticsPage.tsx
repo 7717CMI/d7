@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { loadCustomerData, applyFilters, getUniqueValues } from '@/lib/utils'
-import { Customer, FilterState } from '@/lib/types'
-import { Filters } from '@/components/filters'
-import { BarChart, PieChart, GroupedBarChart } from '@/components/charts'
-import { COLORS } from '@/lib/types'
-import { DemoDataNotice } from '@/components/demo-notice'
+import { loadCustomerData, applyFilters, getUniqueValues } from '../lib/utils'
+import { Customer, FilterState, COLORS } from '../lib/types'
+import { Filters } from '../components/filters'
+import { BarChart, PieChart, GroupedBarChart } from '../components/charts'
+import { DemoDataNotice } from '../components/demo-notice'
 
 export function AnalyticsPage() {
   const [customers, setCustomers] = useState<Customer[]>([])

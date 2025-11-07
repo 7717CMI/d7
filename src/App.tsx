@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Sidebar, MobileNavbar } from '@/components/sidebar'
-import { OverviewPage } from '@/pages/OverviewPage'
-import { CustomersPage } from '@/pages/CustomersPage'
-import { AnalyticsPage } from '@/pages/AnalyticsPage'
-import '@/index.css'
+import { Sidebar, MobileNavbar } from './components/sidebar'
+import { OverviewPage } from './pages/OverviewPage'
+import { CustomersPage } from './pages/CustomersPage'
+import { AnalyticsPage } from './pages/AnalyticsPage'
+import './index.css'
 
 function App() {
   return (

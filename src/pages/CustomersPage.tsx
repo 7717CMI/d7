@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { loadCustomerData, exportToCSV } from '@/lib/utils'
-import { Customer } from '@/lib/types'
-import { DemoDataNotice } from '@/components/demo-notice'
+import { loadCustomerData, exportToCSV } from '../lib/utils'
+import { Customer } from '../lib/types'
+import { DemoDataNotice } from '../components/demo-notice'
 
 export function CustomersPage() {
   const [filteredCustomers, setFilteredCustomers] = useState<Customer[]>([])

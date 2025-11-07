@@ -1,7 +1,5 @@
-'use client'
-
 import { useState } from 'react'
-import { FilterState } from '@/lib/types'
+import { FilterState } from '../lib/types'
 
 interface FiltersProps {
   uniqueValues: {

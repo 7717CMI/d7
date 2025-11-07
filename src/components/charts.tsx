@@ -1,5 +1,5 @@
 import Plot from 'react-plotly.js'
-import { COLOR_SEQUENCE } from '@/lib/types'
+import { COLOR_SEQUENCE } from '../lib/types'
 
 interface ChartProps {
   data: any[]
