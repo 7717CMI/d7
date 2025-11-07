@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { loadCustomerData, applyFilters, getUniqueValues } from '../lib/utils'
+import { loadCustomerData, applyFilters, getUniqueValues, normalizeLicenseName, normalizeRegionName } from '../lib/utils'
 import { Customer, FilterState, COLORS } from '../lib/types'
 import { Filters } from '../components/filters'
 import { BarChart, PieChart, GroupedBarChart } from '../components/charts'
@@ -41,25 +41,25 @@ export function AnalyticsPage() {
 
   const uniqueValues = getUniqueValues(customers)
 
-  // License ecosystem breakdown
+  // License ecosystem breakdown with normalized names
   const licenseCounts: Record<string, number> = {}
   filteredCustomers.forEach(c => {
     c.License_Ecosystem.split(',').forEach((lic: string) => {
-      const trimmed = lic.trim()
-      if (trimmed) {
-        licenseCounts[trimmed] = (licenseCounts[trimmed] || 0) + 1
+      const normalized = normalizeLicenseName(lic)
+      if (normalized) {
+        licenseCounts[normalized] = (licenseCounts[normalized] || 0) + 1
       }
     })
   })
   const licenseData = Object.entries(licenseCounts)
-    .map(([License, Count]) => ({ License, Count }))
-    .sort((a, b) => b.Count - a.Count)
+    .map(([License, Count]) => ({ License, 'Number of Customers': Count }))
+    .sort((a, b) => b['Number of Customers'] - a['Number of Customers'])
 
-  // Regional analysis
+  // Regional analysis (using normalized region names)
   const regionData: Record<string, { cloud: number[], elo: number[], total: number[] }> = {}
   filteredCustomers.forEach(c => {
     const match = c.Geographical_Presence.match(/operates across (.+)$/i)
-    const region = match ? match[1].trim() : 'Unknown'
+    const region = match ? normalizeRegionName(match[1].trim()) : 'WEST' // Default to WEST if no match
     if (!regionData[region]) {
       regionData[region] = { cloud: [], elo: [], total: [] }
     }
@@ -141,7 +141,7 @@ export function AnalyticsPage() {
               <BarChart
                 data={licenseData}
                 xCol="License"
-                yCol="Count"
+                yCol="Number of Customers"
                 color={COLORS.primary}
               />
             </div>
@@ -185,7 +185,7 @@ export function AnalyticsPage() {
             <ul className="space-y-2 text-sm list-disc list-inside">
               <li>
                 <strong>Top License System:</strong>{' '}
-                {licenseData[0]?.License} used by {licenseData[0]?.Count} customers
+                {licenseData[0]?.License} used by {licenseData[0]?.['Number of Customers']} customers
               </li>
               <li>
                 <strong>Highest Cloud Optimization:</strong>{' '}

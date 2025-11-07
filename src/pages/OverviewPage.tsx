@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { loadCustomerData, applyFilters, getUniqueValues } from '../lib/utils'
 import { Customer, FilterState, COLORS } from '../lib/types'
 import { Filters } from '../components/filters'
-import { BarChart, PieChart, GroupedBarChart, ScatterChart } from '../components/charts'
+import { BarChart, PieChart, GroupedBarChart } from '../components/charts'
 import { DemoDataNotice } from '../components/demo-notice'
 
 export function OverviewPage() {
@@ -20,6 +20,7 @@ export function OverviewPage() {
 
   useEffect(() => {
     loadCustomerData().then((data: Customer[]) => {
+      console.log(`OverviewPage: Loaded ${data.length} customers`)
       setCustomers(data)
       setFilteredCustomers(data)
       setLoading(false)
@@ -46,8 +47,12 @@ export function OverviewPage() {
   const avgOptPotential = filteredCustomers.length > 0
     ? filteredCustomers.reduce((sum, c) => sum + c.Total_Optimization_Potential, 0) / filteredCustomers.length
     : 0
-  const totalCloudOpt = filteredCustomers.reduce((sum, c) => sum + c.Cloud_Optimization_Potential, 0)
-  const totalEloOpt = filteredCustomers.reduce((sum, c) => sum + c.ELO_Optimization_Potential, 0)
+  const totalCloudOpt = filteredCustomers.length > 0
+    ? filteredCustomers.reduce((sum, c) => sum + c.Cloud_Optimization_Potential, 0) / filteredCustomers.length
+    : 0
+  const totalEloOpt = filteredCustomers.length > 0
+    ? filteredCustomers.reduce((sum, c) => sum + c.ELO_Optimization_Potential, 0) / filteredCustomers.length
+    : 0
 
   // Industry distribution
   const industryCounts = filteredCustomers.reduce((acc, c) => {
@@ -55,8 +60,12 @@ export function OverviewPage() {
     return acc
   }, {} as Record<string, number>)
   const industryData = Object.entries(industryCounts)
-    .map(([Industry, Count]) => ({ Industry, Count: Count as number }))
-    .sort((a, b) => b.Count - a.Count)
+    .map(([Industry, Count]) => ({ 
+      Industry: Industry === 'Airlines / Transportation' ? 'Transportation' : Industry, 
+      'Number of Customers': Count as number 
+    }))
+    .filter(item => item.Industry !== 'Food & Beverage / CPG')
+    .sort((a, b) => b['Number of Customers'] - a['Number of Customers'])
     .slice(0, 10)
 
   // Cloud platform distribution
@@ -87,7 +96,7 @@ export function OverviewPage() {
     Industry,
     'Cloud Opt %': values.cloud.reduce((a: number, b: number) => a + b, 0) / values.cloud.length,
     'ELO Opt %': values.elo.reduce((a: number, b: number) => a + b, 0) / values.elo.length,
-  })).slice(0, 8)
+  })).filter(item => item.Industry !== 'Food & Beverage / CPG').slice(0, 8)
 
   return (
     <div className="max-w-7xl mx-auto page-container">
@@ -126,7 +135,7 @@ export function OverviewPage() {
                   <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
                     Total Customers
                   </p>
-                  <p className="text-3xl font-bold text-gray-800">{totalCustomers}</p>
+                  <p className="text-3xl font-bold text-gray-800">{totalCustomers >= 100 ? '100+' : totalCustomers}</p>
                   <p className="text-xs text-gray-500 mt-1">Active in database</p>
                 </div>
               </div>
@@ -154,10 +163,10 @@ export function OverviewPage() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
-                    Total Cloud Potential
+                    Avg Cloud Potential
                   </p>
-                  <p className="text-3xl font-bold text-gray-800">{totalCloudOpt.toFixed(0)}%</p>
-                  <p className="text-xs text-gray-500 mt-1">Across all customers</p>
+                  <p className="text-3xl font-bold text-gray-800">{totalCloudOpt.toFixed(1)}%</p>
+                  <p className="text-xs text-gray-500 mt-1">Average across all customers</p>
                 </div>
               </div>
             </div>
@@ -169,10 +178,10 @@ export function OverviewPage() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
-                    Total ELO Potential
+                    Avg ELO Potential
                   </p>
-                  <p className="text-3xl font-bold text-gray-800">{totalEloOpt.toFixed(0)}%</p>
-                  <p className="text-xs text-gray-500 mt-1">License optimization</p>
+                  <p className="text-3xl font-bold text-gray-800">{totalEloOpt.toFixed(1)}%</p>
+                  <p className="text-xs text-gray-500 mt-1">Average license optimization</p>
                 </div>
               </div>
             </div>
@@ -194,7 +203,7 @@ export function OverviewPage() {
                   <BarChart
                     data={industryData}
                     xCol="Industry"
-                    yCol="Count"
+                    yCol="Number of Customers"
                     color={COLORS.primary}
                   />
                 </div>
@@ -242,25 +251,6 @@ export function OverviewPage() {
                     data={optByIndustry}
                     xCol="Industry"
                     yCols={['Cloud Opt %', 'ELO Opt %']}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <h4 className="text-blue-600 text-xl font-bold mb-4 pb-2 border-b-2 border-blue-600 inline-block">
-                Customer-Level Optimization Potential
-              </h4>
-              <div className="bg-white rounded-xl shadow-sm p-6">
-                <h5 className="text-center text-lg font-semibold mb-4">
-                  Total Optimization Potential by Customer (Color = Industry)
-                </h5>
-                <div style={{ height: '630px' }}>
-                  <ScatterChart
-                    data={filteredCustomers}
-                    xCol="Sr_No"
-                    yCol="Total_Optimization_Potential"
-                    colorCol="Industry_Vertical"
                   />
                 </div>
               </div>

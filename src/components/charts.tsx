@@ -80,6 +80,18 @@ export function BarChart({ data, xCol, yCol, title = '' }: ChartProps) {
         plot_bgcolor: 'rgba(248,249,250,0.3)',
         paper_bgcolor: 'rgba(0,0,0,0)',
         bargap: 0.2,
+        annotations: [{
+          text: 'DEMO DATA',
+          xref: 'paper',
+          yref: 'paper',
+          x: 0.5,
+          y: 0.5,
+          xanchor: 'center',
+          yanchor: 'middle',
+          showarrow: false,
+          font: { size: 72, color: 'rgba(200, 200, 200, 0.3)', family: 'Arial, sans-serif' },
+          textangle: -45 as any,
+        }],
       }}
       config={{ displayModeBar: false }}
       style={{ width: '100%', height: '100%' }}
@@ -131,6 +143,18 @@ export function PieChart({ data, namesCol, valuesCol, title = '' }: PieChartProp
           bordercolor: '#ddd',
           borderwidth: 1,
         },
+        annotations: [{
+          text: 'DEMO DATA',
+          xref: 'paper',
+          yref: 'paper',
+          x: 0.5,
+          y: 0.5,
+          xanchor: 'center',
+          yanchor: 'middle',
+          showarrow: false,
+          font: { size: 72, color: 'rgba(200, 200, 200, 0.3)', family: 'Arial, sans-serif' },
+          textangle: -45 as any,
+        }],
       }}
       config={{ displayModeBar: false }}
       style={{ width: '100%', height: '100%' }}
@@ -195,6 +219,18 @@ export function GroupedBarChart({ data, xCol, yCols, title = '' }: GroupedBarCha
         paper_bgcolor: 'rgba(0,0,0,0)',
         bargap: 0.3,
         bargroupgap: 0.1,
+        annotations: [{
+          text: 'DEMO DATA',
+          xref: 'paper',
+          yref: 'paper',
+          x: 0.5,
+          y: 0.5,
+          xanchor: 'center',
+          yanchor: 'middle',
+          showarrow: false,
+          font: { size: 72, color: 'rgba(200, 200, 200, 0.3)', family: 'Arial, sans-serif' },
+          textangle: -45 as any,
+        }],
       }}
       config={{ displayModeBar: false }}
       style={{ width: '100%', height: '100%' }}
@@ -267,6 +303,18 @@ export function StackedBarChart({ data, xCol, yCols, title = '' }: GroupedBarCha
         paper_bgcolor: 'rgba(0,0,0,0)',
         bargap: 0.15,
         bargroupgap: 0.0,
+        annotations: [{
+          text: 'DEMO DATA',
+          xref: 'paper',
+          yref: 'paper',
+          x: 0.5,
+          y: 0.5,
+          xanchor: 'center',
+          yanchor: 'middle',
+          showarrow: false,
+          font: { size: 72, color: 'rgba(200, 200, 200, 0.3)', family: 'Arial, sans-serif' },
+          textangle: -45 as any,
+        }],
       }}
       config={{ displayModeBar: false }}
       style={{ width: '100%', height: '100%' }}
@@ -323,6 +371,18 @@ export function ScatterChart({ data, xCol, yCol, colorCol, title = '' }: Scatter
           font: { size: 10 },
           title: { text: colorCol, font: { size: 11 } },
         },
+        annotations: [{
+          text: 'DEMO DATA',
+          xref: 'paper',
+          yref: 'paper',
+          x: 0.5,
+          y: 0.5,
+          xanchor: 'center',
+          yanchor: 'middle',
+          showarrow: false,
+          font: { size: 72, color: 'rgba(200, 200, 200, 0.3)', family: 'Arial, sans-serif' },
+          textangle: -45 as any,
+        }],
       }}
       config={{ displayModeBar: false }}
       style={{ width: '100%', height: '100%' }}
