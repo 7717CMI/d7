@@ -20,7 +20,7 @@ export function AnalyticsPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    loadCustomerData().then((data) => {
+    loadCustomerData().then((data: Customer[]) => {
       setCustomers(data)
       setFilteredCustomers(data)
       setLoading(false)
@@ -45,7 +45,7 @@ export function AnalyticsPage() {
   // License ecosystem breakdown
   const licenseCounts: Record<string, number> = {}
   filteredCustomers.forEach(c => {
-    c.License_Ecosystem.split(',').forEach(lic => {
+    c.License_Ecosystem.split(',').forEach((lic: string) => {
       const trimmed = lic.trim()
       if (trimmed) {
         licenseCounts[trimmed] = (licenseCounts[trimmed] || 0) + 1

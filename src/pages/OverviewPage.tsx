@@ -20,7 +20,7 @@ export function OverviewPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    loadCustomerData().then((data) => {
+    loadCustomerData().then((data: Customer[]) => {
       setCustomers(data)
       setFilteredCustomers(data)
       setLoading(false)
@@ -56,7 +56,7 @@ export function OverviewPage() {
     return acc
   }, {} as Record<string, number>)
   const industryData = Object.entries(industryCounts)
-    .map(([Industry, Count]) => ({ Industry, Count }))
+    .map(([Industry, Count]) => ({ Industry, Count: Count as number }))
     .sort((a, b) => b.Count - a.Count)
     .slice(0, 10)
 
@@ -84,10 +84,10 @@ export function OverviewPage() {
       acc[c.Industry_Vertical].elo.push(c.ELO_Optimization_Potential)
       return acc
     }, {} as Record<string, { cloud: number[], elo: number[] }>)
-  ).map(([Industry, values]) => ({
+  ).map(([Industry, values]: [string, { cloud: number[], elo: number[] }]) => ({
     Industry,
-    'Cloud Opt %': values.cloud.reduce((a, b) => a + b, 0) / values.cloud.length,
-    'ELO Opt %': values.elo.reduce((a, b) => a + b, 0) / values.elo.length,
+    'Cloud Opt %': values.cloud.reduce((a: number, b: number) => a + b, 0) / values.cloud.length,
+    'ELO Opt %': values.elo.reduce((a: number, b: number) => a + b, 0) / values.elo.length,
   })).slice(0, 8)
 
   return (

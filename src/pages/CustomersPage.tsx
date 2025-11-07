@@ -11,7 +11,7 @@ export function CustomersPage() {
   const [sortConfig, setSortConfig] = useState<{ key: keyof Customer | null; direction: 'asc' | 'desc' }>({ key: null, direction: 'asc' })
 
   useEffect(() => {
-    loadCustomerData().then((data) => {
+    loadCustomerData().then((data: Customer[]) => {
       setFilteredCustomers(data)
       setLoading(false)
     })
