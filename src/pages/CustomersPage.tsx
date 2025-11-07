@@ -135,6 +135,9 @@ export function CustomersPage() {
                 </th>
                 <th className="p-3 text-left font-semibold border border-gray-300">Employees</th>
                 <th className="p-3 text-left font-semibold border border-gray-300">IT Team</th>
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Phone')}>
+                  Contact Number {sortConfig.key === 'Phone' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                </th>
                 <th className="p-3 text-left font-semibold border border-gray-300">Decision Maker</th>
                 <th className="p-3 text-left font-semibold border border-gray-300">Email</th>
               </tr>
@@ -167,6 +170,7 @@ export function CustomersPage() {
                   </td>
                   <td className="p-3 border border-gray-200">{formatNumber(customer.Number_of_Employees)}</td>
                   <td className="p-3 border border-gray-200">{formatNumber(customer.IT_Team_Size)}</td>
+                  <td className="p-3 border border-gray-200">{customer.Phone || 'N/A'}</td>
                   <td className="p-3 border border-gray-200">{customer.Decision_Maker}</td>
                   <td className="p-3 border border-gray-200">{customer.Email}</td>
                 </tr>

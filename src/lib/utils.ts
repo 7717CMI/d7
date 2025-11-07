@@ -58,6 +58,17 @@ export async function loadCustomerData(): Promise<Customer[]> {
                   customer[key] = value
                 }
               })
+              
+              // Generate mock phone number if not present in CSV
+              if (!customer.Phone || customer.Phone === '') {
+                // Generate a consistent mock phone number based on Sr_No
+                const seed = customer.Sr_No || 1
+                const areaCode = 200 + ((seed * 7) % 800) // Area code between 200-999
+                const exchange = 100 + ((seed * 13) % 900) // Exchange between 100-999
+                const number = 1000 + ((seed * 17) % 9000) // Last 4 digits between 1000-9999
+                customer.Phone = `+1-${areaCode}-${exchange}-${number}`
+              }
+              
               return customer as Customer
             })
             cachedData = customers

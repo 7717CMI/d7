@@ -102,7 +102,7 @@ This application is fully optimized for serverless deployment on Vercel. No serv
 5. Click "Deploy" (takes ~2 minutes)
 
 **Option 2: Vercel CLI**
-```bash
+   ```bash
 npm i -g vercel
 vercel
 vercel --prod  # For production
