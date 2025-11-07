@@ -58,7 +58,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# Don't ignore src/lib/ - only ignore root lib/ if it exists
+/lib/
 lib64/
 parts/
 sdist/
