@@ -12,6 +12,10 @@
 /build
 /dist
 
+# Next.js (if any remnants)
+/.next/
+/out/
+
 # misc
 .DS_Store
 *.pem
