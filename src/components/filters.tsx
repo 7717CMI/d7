@@ -27,7 +27,7 @@ export function Filters({ uniqueValues, filters, onFiltersChange }: FiltersProps
       regions: [],
       optTypes: [],
       licenses: [],
-      optRange: [0, 50],
+      optRange: [0, 100],
     })
     setOpenDropdown(null)
   }
@@ -156,7 +156,7 @@ export function Filters({ uniqueValues, filters, onFiltersChange }: FiltersProps
               <input
                 type="range"
                 min="0"
-                max="50"
+                max="100"
                 step="5"
                 value={filters.optRange[0]}
                 onChange={(e) => updateFilter('optRange', [parseInt(e.target.value), filters.optRange[1]])}
@@ -167,7 +167,7 @@ export function Filters({ uniqueValues, filters, onFiltersChange }: FiltersProps
               <input
                 type="range"
                 min="0"
-                max="50"
+                max="100"
                 step="5"
                 value={filters.optRange[1]}
                 onChange={(e) => updateFilter('optRange', [filters.optRange[0], parseInt(e.target.value)])}

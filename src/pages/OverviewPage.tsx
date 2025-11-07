@@ -14,7 +14,7 @@ export function OverviewPage() {
     regions: [],
     optTypes: [],
     licenses: [],
-    optRange: [0, 50],
+    optRange: [0, 100],
   })
   const [loading, setLoading] = useState(true)
 
