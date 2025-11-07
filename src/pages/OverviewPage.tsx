@@ -197,7 +197,7 @@ export function OverviewPage() {
               </h4>
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h5 className="text-center text-lg font-semibold mb-4">
-                  Top 10 Industries by Customer Count
+                  Number of Customers by Country
                 </h5>
                 <div style={{ height: '580px' }}>
                   <BarChart
