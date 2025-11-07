@@ -74,7 +74,7 @@ export function OverviewPage() {
   const optTypeData = Object.entries(optTypeCounts).map(([Type, Count]) => ({ Type, Count }))
 
   // Optimization potential by industry
-  const optByIndustry = Object.entries(
+  const optByIndustry = (Object.entries(
     filteredCustomers.reduce((acc, c) => {
       if (!acc[c.Industry_Vertical]) {
         acc[c.Industry_Vertical] = { cloud: [], elo: [] }
@@ -83,7 +83,7 @@ export function OverviewPage() {
       acc[c.Industry_Vertical].elo.push(c.ELO_Optimization_Potential)
       return acc
     }, {} as Record<string, { cloud: number[], elo: number[] }>)
-  ).map(([Industry, values]: [string, { cloud: number[], elo: number[] }]) => ({
+  ) as [string, { cloud: number[], elo: number[] }][]).map(([Industry, values]) => ({
     Industry,
     'Cloud Opt %': values.cloud.reduce((a: number, b: number) => a + b, 0) / values.cloud.length,
     'ELO Opt %': values.elo.reduce((a: number, b: number) => a + b, 0) / values.elo.length,
