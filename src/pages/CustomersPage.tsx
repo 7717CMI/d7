@@ -109,37 +109,47 @@ export function CustomersPage() {
             <thead>
               <tr className="bg-primary text-white">
                 <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Sr_No')}>
-                  Sr No {sortConfig.key === 'Sr_No' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                  Sr. No. {sortConfig.key === 'Sr_No' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                 </th>
                 <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Customer_Name')}>
                   Customer Name {sortConfig.key === 'Customer_Name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                 </th>
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Overview')}>
+                  Business Overview {sortConfig.key === 'Overview' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                </th>
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Geographical_Presence')}>
+                  Geographical Presence {sortConfig.key === 'Geographical_Presence' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                </th>
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Product_Offering')}>
+                  Product Offering / Business Segments {sortConfig.key === 'Product_Offering' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                </th>
                 <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Industry_Vertical')}>
-                  Industry {sortConfig.key === 'Industry_Vertical' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                  Industry Vertical {sortConfig.key === 'Industry_Vertical' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                 </th>
-                <th className="p-3 text-left font-semibold border border-gray-300">Cloud Platform</th>
-                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Annual_IT_Spend_M')}>
-                  IT Spend ($M) {sortConfig.key === 'Annual_IT_Spend_M' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Cloud_Platforms')}>
+                  Cloud Platforms Used {sortConfig.key === 'Cloud_Platforms' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                 </th>
-                <th className="p-3 text-left font-semibold border border-gray-300">Cloud Spend ($M)</th>
-                <th className="p-3 text-left font-semibold border border-gray-300">License Spend ($M)</th>
-                <th className="p-3 text-left font-semibold border border-gray-300">Cloud Savings ($M)</th>
-                <th className="p-3 text-left font-semibold border border-gray-300">License Savings ($M)</th>
-                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Total_Potential_Savings_M')}>
-                  Total Savings ($M) {sortConfig.key === 'Total_Potential_Savings_M' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('License_Ecosystem')}>
+                  License Ecosystem (MS/Oracle/IBM/SAP) {sortConfig.key === 'License_Ecosystem' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                 </th>
-                <th className="p-3 text-left font-semibold border border-gray-300">Cloud Opt %</th>
-                <th className="p-3 text-left font-semibold border border-gray-300">ELO Opt %</th>
-                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Total_Optimization_Potential')}>
-                  Total Opt % {sortConfig.key === 'Total_Optimization_Potential' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Optimization_Type')}>
+                  Optimization Type (Cloud / ELO) {sortConfig.key === 'Optimization_Type' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                 </th>
-                <th className="p-3 text-left font-semibold border border-gray-300">Employees</th>
-                <th className="p-3 text-left font-semibold border border-gray-300">IT Team</th>
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Pain_Points')}>
+                  Pain Points {sortConfig.key === 'Pain_Points' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                </th>
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Trigger_Event')}>
+                  Trigger Event / Recent Activity {sortConfig.key === 'Trigger_Event' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                </th>
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Key_Stakeholders')}>
+                  Key Stakeholders {sortConfig.key === 'Key_Stakeholders' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                </th>
+                <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Cloud_Optimization_Potential')}>
+                  Estimated Optimization Potential (%) {sortConfig.key === 'Cloud_Optimization_Potential' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                </th>
                 <th className="p-3 text-left font-semibold border border-gray-300 cursor-pointer hover:bg-primary/90" onClick={() => handleSort('Phone')}>
-                  Contact Number {sortConfig.key === 'Phone' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                  Contact Details {sortConfig.key === 'Phone' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                 </th>
-                <th className="p-3 text-left font-semibold border border-gray-300">Decision Maker</th>
-                <th className="p-3 text-left font-semibold border border-gray-300">Email</th>
               </tr>
             </thead>
             <tbody>
@@ -153,26 +163,29 @@ export function CustomersPage() {
                 >
                   <td className="p-3 border border-gray-200">{customer.Sr_No}</td>
                   <td className="p-3 border border-gray-200 font-medium">{customer.Customer_Name}</td>
-                  <td className="p-3 border border-gray-200">{customer.Industry_Vertical}</td>
-                  <td className="p-3 border border-gray-200">{customer.Cloud_Platforms}</td>
-                  <td className="p-3 border border-gray-200">{formatNumber(customer.Annual_IT_Spend_M)}</td>
-                  <td className="p-3 border border-gray-200">{formatNumber(customer.Current_Cloud_Spend_M, 2)}</td>
-                  <td className="p-3 border border-gray-200">{formatNumber(customer.Current_License_Spend_M, 2)}</td>
-                  <td className="p-3 border border-gray-200">{formatNumber(customer.Potential_Cloud_Savings_M, 2)}</td>
-                  <td className="p-3 border border-gray-200">{formatNumber(customer.Potential_License_Savings_M, 2)}</td>
-                  <td className="p-3 border border-gray-200 font-bold text-success">
-                    ${formatNumber(customer.Total_Potential_Savings_M, 2)}M
+                  <td className="p-3 border border-gray-200 max-w-xs">{customer.Overview || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200 max-w-xs">{customer.Geographical_Presence || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200 max-w-xs">{customer.Product_Offering || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200">{customer.Industry_Vertical || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200">{customer.Cloud_Platforms || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200 max-w-xs">{customer.License_Ecosystem || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200">{customer.Optimization_Type || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200 max-w-xs">{customer.Pain_Points || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200 max-w-xs">{customer.Trigger_Event || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200 max-w-xs">{customer.Key_Stakeholders || 'N/A'}</td>
+                  <td className="p-3 border border-gray-200">
+                    <div className="text-sm">
+                      <div>Cloud {customer.Cloud_Optimization_Potential}%</div>
+                      <div>ELO {customer.ELO_Optimization_Potential}%</div>
+                    </div>
                   </td>
-                  <td className="p-3 border border-gray-200">{customer.Cloud_Optimization_Potential}%</td>
-                  <td className="p-3 border border-gray-200">{customer.ELO_Optimization_Potential}%</td>
-                  <td className="p-3 border border-gray-200 font-bold text-success">
-                    {customer.Total_Optimization_Potential}%
+                  <td className="p-3 border border-gray-200">
+                    <div className="text-sm">
+                      {customer.Phone && <div>📞 {customer.Phone}</div>}
+                      {customer.Website && <div>🌐 <a href={customer.Website.startsWith('http') ? customer.Website : `https://${customer.Website}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{customer.Website}</a></div>}
+                      {!customer.Phone && !customer.Website && 'N/A'}
+                    </div>
                   </td>
-                  <td className="p-3 border border-gray-200">{formatNumber(customer.Number_of_Employees)}</td>
-                  <td className="p-3 border border-gray-200">{formatNumber(customer.IT_Team_Size)}</td>
-                  <td className="p-3 border border-gray-200">{customer.Phone || 'N/A'}</td>
-                  <td className="p-3 border border-gray-200">{customer.Decision_Maker}</td>
-                  <td className="p-3 border border-gray-200">{customer.Email}</td>
                 </tr>
               ))}
             </tbody>
